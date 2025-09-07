@@ -1,7 +1,8 @@
 # Spring Boot Mikroservis Projesi
 
 Bu proje, **Order, Product ve Inventory servisleri** ile bir **API Gateway** içeren basit bir mikroservis mimari uygulaması.
-Proje Docker ile çalışmakta ve database olarak PostgreSQL ile MongoDB, mikroservis iletişimi için Spring Cloud OpenFeign kullanmaktadır. 
+Proje *Docker* ile çalışmakta ve database olarak *PostgreSQL* ile *MongoDB*, mikroservis iletişimi için *Apache Kafka* kullanmaktadır. 
+Fault tolerance için de *Resilience4j* kullanılıyor.
 
 ## Servisler
 
@@ -17,10 +18,11 @@ Proje Docker ile çalışmakta ve database olarak PostgreSQL ile MongoDB, mikros
 ## Teknolojiler
 
 - Spring Boot (Java)
-- PostgreSQL
-- MongoDB
+- Database PostgreSQL ve MongoDB
 - Docker
-- OpenFeign
+- OpenFeign (http client kütüphanesi)
+- Apache Kafka (mikroservisler arası mesajlaşma)
+- Resilience4j (fault tolerance)
 - Maven (her servis için)
 
 ---
@@ -29,11 +31,16 @@ Proje Docker ile çalışmakta ve database olarak PostgreSQL ile MongoDB, mikros
 
 ### 1. Docker ile servisleri ayağa kaldır
 
-Projeyi klonladıktan sonra her bir klasörde:
+Projeyi klonladıktan sonra ana dizinde:
 
 ```bash
 docker-compose up -d
 ```
 
-### 2. Her bir mikroservisi IDE üzerinden çalıştır
+### 2. Her mikroservisi IDE üzerinden çalıştır
 
+Sırayla
+1. DemoApplication 
+2. InventoryServiceApplication
+3. OrderServiceApplication
+4. ApiGatewayApplication
